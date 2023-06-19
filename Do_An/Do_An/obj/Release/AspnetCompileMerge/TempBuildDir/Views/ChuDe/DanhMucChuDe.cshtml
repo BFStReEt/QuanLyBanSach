@@ -1,0 +1,16 @@
+﻿@using Do_An.Models
+@model List<ChuDe>
+
+@{
+    ViewBag.Title = "DanhMucChuDe";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+@*Hiển thị danh mục chủ đề*@
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("SachTheoChuDe",new { @MaChuDe = item.MaChuDe})" class="button button-submit">@item.TenChuDe</a>
+    <br />
+    <br />
+}
+

@@ -1,0 +1,107 @@
+﻿@using PagedList.Mvc;
+@using Do_An.Models;
+
+@model  PagedList.IPagedList<Sach>
+<link href="~/Content/TrangChuCss.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "KetQuaTimKiem";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+@*Thao tác với Body của Index*@
+<div id="divBody">
+    <h2 style="margin:20px;margin-bottom:-10px; margin-left:-40px;">Kết quả tìm kiếm</h2>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        i++;
+        <div id="SanPham">
+            <a href="@Url.Action("XemChiTiet","Sach",new {@MaSach=item.MaSach})">
+                <div id="AnhBia">
+                    <img src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="100" height="150" />
+                </div>
+                <div id="ThongTin">
+                    @if (item.TenSach.Length < 35)
+                    {
+                        <div id="TenSach" title="@item.TenSach">@item.TenSach</div>
+                    }
+                    else
+                    {
+                        <div id="TenSach" title="@item.TenSach">@item.TenSach.Substring(0, 35)...</div>
+                    }
+
+                    <a href="@Url.Action("XemChiTiet", "Sach", new { masach = item.MaSach })" style="padding-left:5px; color: red; font-size: 16px; font-weight: bold; text-decoration: none;">Xem chi tiết</a>
+
+                    <div id="DonGia" style="color:orange"><font color="green">Giá: </font>@string.Format("{0:0,0}", item.GiaBan + " VNĐ")</div>
+
+                    <div id="GioHang">
+                        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strURL = Request.Url.ToString() }))
+                        {
+                            <button type="submit" id="btnGioHang" class="btn btn-primary rounded-button">
+                                <i class="fas fa-shopping-cart"></i> Mua hàng
+                            </button>
+                        }
+                    </div>
+                </div>
+            </a>
+        </div>
+        if (i % 4 == 0)
+        {
+            <div class="clearfix"></div>
+        }
+
+    }
+    <div class="clearfix"></div> <!-- Đảm bảo các hàng cuối cùng không bị trôi -->
+</div>
+
+@* Tạo link liên kết các trang *@
+ &nbsp;&nbsp;&nbsp;&nbsp;Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+
+<style>
+    .MenuTrang {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+        .MenuTrang .pagination {
+            display: inline-block;
+            padding-left: 0;
+            margin: 0;
+            border-radius: 4px;
+        }
+
+            .MenuTrang .pagination li {
+                display: inline;
+                margin-right: 5px;
+            }
+
+                .MenuTrang .pagination li a,
+                .MenuTrang .pagination li span {
+                    position: relative;
+                    float: left;
+                    padding: 6px 12px;
+                    line-height: 1.42857143;
+                    text-decoration: none;
+                    color: #428bca;
+                    background-color: #fff;
+                    border: 1px solid #ddd;
+                }
+
+            .MenuTrang .pagination .active span {
+                background-color: #428bca;
+                color: #fff;
+                border-color: #428bca;
+            }
+
+            .MenuTrang .pagination .disabled span,
+            .MenuTrang .pagination .disabled span:hover,
+            .MenuTrang .pagination .disabled span:focus {
+                background-color: #fff;
+                color: #999;
+                cursor: not-allowed;
+            }
+</style>

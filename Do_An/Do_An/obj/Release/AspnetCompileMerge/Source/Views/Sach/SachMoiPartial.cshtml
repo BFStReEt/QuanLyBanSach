@@ -1,0 +1,32 @@
+﻿@*Định nghĩa kiểu dữ liệu cho biến Model*@
+@using Do_An.Models
+@model List<Sach>
+
+<h1 class="item-header">Sách bán chạy nhất</h1>
+
+@{
+    foreach (var item in Model)
+    {
+    <div class="activity-list-update">
+        <img src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="50" height="50" alt="Image">
+        @if (item.TenSach.Length > 30)
+        {
+            <p><strong title="@item.TenSach">@item.TenSach.Substring(0, 30)...</strong><br /><a href="@Url.Action("XemChiTiet", new {@masach = item.MaSach })">Xem chi tiết</a></p>
+        }
+        else
+        {
+            <p>
+                <strong title="@item.TenSach">@item.TenSach</strong>
+                <br />
+                <a href="@Url.Action("XemChiTiet", new {@masach = item.MaSach })">Xem chi tiết</a>
+            </p>
+
+            <div class="clear"></div>
+        }
+    </div>
+    }
+}
+
+<h4 class="item-footer green">
+    Sách loại mới nhất
+</h4>

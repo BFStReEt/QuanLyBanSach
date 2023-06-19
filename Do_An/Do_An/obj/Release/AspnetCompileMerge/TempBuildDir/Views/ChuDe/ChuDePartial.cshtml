@@ -1,0 +1,12 @@
+﻿@using Do_An.Models;
+@model List<ChuDe>
+
+
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("SachTheoChuDe",new { @MaChuDe = item.MaChuDe})" class="button button-submit">@item.TenChuDe</a>
+}
+
+<a href="@Url.Action("DanhMucChuDe")" class="button button-submit">Chủ đề khác ...</a>
+
+

@@ -1,0 +1,48 @@
+﻿@using Do_An.Models;
+@model List<Sach>
+<link href="~/Content/TrangChuCss.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "SachTheoChuDe";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+@if(Model.Count == 0)
+{
+    <h2 style="padding: 10px; text-align: center;">@ViewBag.Sach</h2>
+}
+
+@*Xuất ra sách theo chủ đề*@
+@{ int i = 0;}
+@foreach (var item in Model)
+{
+    i++;
+    <div id="SanPham">
+        <a href="@Url.Action("XemChiTiet","Sach",new {@MaSach=item.MaSach})">
+            <div id="AnhBia">
+                <img src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="100" height="150" />
+            </div>
+            <div id="ThongTin">
+                @if (item.TenSach.Length < 35)
+                {
+                    <div id="TenSach" title="@item.TenSach">@item.TenSach</div>
+                }
+                else
+                {
+                    <div id="TenSach" title="@item.TenSach">@item.TenSach.Substring(0, 35)...</div>
+                }
+
+                <a href="@Url.Action("XemChiTiet", "Sach", new { masach = item.MaSach })" style="padding-left:5px; color: red; font-size: 16px; font-weight: bold; text-decoration: none;">Xem chi tiết</a>
+
+                <div id="DonGia" style="color:orange"><font color="green">Giá: </font>@string.Format("{0:0,0}", item.GiaBan + " VNĐ")</div>
+            </div>
+         </a>
+    </div>
+    if (i % 4 == 0)
+    {
+        <div class="clearfix"></div>
+    }
+
+}
+<div class="clearfix"></div> <!-- Đảm bảo các hàng cuối cùng không bị trôi -->
+

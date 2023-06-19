@@ -1,0 +1,16 @@
+﻿@using Do_An.Models
+@model List < NhaXuatBan>
+
+@{
+    ViewBag.Title = "DanhMucNXB";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<h2>Danh mục Nhà Xuất Bản</h2>
+@{
+    foreach (var item in Model)
+    {
+        <div style="padding-left:10px;"><i class="fa-solid fa-book" style="padding-right:10px;"></i><a href="@Url.Action("SachTheoNXB",new { @MaNXB = item.MaNXB})">@item.TenNXB</a></div>
+    }
+
+}

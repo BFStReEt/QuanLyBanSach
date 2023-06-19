@@ -1,0 +1,106 @@
+﻿@using Do_An.Models
+@model List<GioHang>
+<link href="~/Content/NguoiDungCssLayout/DangNhapCss.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<h2 style="background:white;">
+    <i class="fa fa-shopping-cart"></i>
+    Giỏ hàng
+</h2>
+
+<table class="cart-table">
+    <tr>
+        <th>Mã sách</th>
+        <th>Tên sách</th>
+        <th>Ảnh bìa</th>
+        <th>Đơn giá</th>
+        <th>Số lượng</th>
+        <th>Tổng tiền</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.iMaSach</td>
+            <td>@item.sTenSach</td>
+            <td><img src="@Url.Content("~/HinhAnhSP/" + item.sAnhBia)" width="50" height="50" /></td>
+            <td>@string.Format("{0:0,0}", item.dDonGia) VND</td>
+            <td>@item.iSoLuong</td>
+            <td>@string.Format("{0:0,0}", item.ThanhTien) VND</td>
+        </tr>
+    }
+    <tr>
+        <td colspan="6" style="text-align:right;color:blue;padding-right:100px;">
+            @Html.ActionLink("Chỉnh sửa giỏ hàng", "SuaGioHang")
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="6" style="text-align:right;padding-right:100px;">
+            @using (Html.BeginForm("DatHang", "GioHang"))
+            {
+                <button type="submit" class="btn-dat-hang">
+                    Đặt hàng <i class="fas fa-shopping-cart"></i>
+                </button>
+            }
+        </td>
+    </tr>
+
+
+
+
+</table>
+
+
+
+@*CSS cho Giỏ hàng*@
+<style>
+    .cart-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    
+
+        .cart-table th,
+        .cart-table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .cart-table th {
+            background-color: #f5f5f5;
+        }
+
+        .cart-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .cart-table tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .cart-table img {
+            display: block;
+            margin: 0 auto;
+        }
+
+    .btn-dat-hang {
+        background-color: #303030;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        font: inherit;
+    }
+
+        .btn-dat-hang:hover {
+            color:coral;
+            border-radius: 4px;
+        }
+
+</style>

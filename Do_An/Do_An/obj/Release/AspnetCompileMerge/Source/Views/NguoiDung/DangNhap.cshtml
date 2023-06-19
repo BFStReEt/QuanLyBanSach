@@ -1,0 +1,31 @@
+﻿<link href="~/Content/NguoiDungCssLayout/DangNhapCss.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+<br />
+
+<div class="form-container">
+    @using (Html.BeginForm())
+    {
+        <h2>Đăng nhập</h2>
+        <span>Tài khoản:</span>
+        <br />
+        @Html.TextBox("txtTaiKhoan")
+        <br />
+        <span>Mật khẩu:</span>
+        <br />
+        <input name="txtMatKhau" type="password" />
+        <br />
+        <br />
+        <input type="submit" id="btnSubmit" name="btnSubmit" value="Đăng nhập" />
+
+        <div class="back-link">
+            <br />
+            <h5>
+                Chưa có tài khoản @Html.ActionLink("Đăng kí ngay", "DangKy", "NguoiDung", null, new { style = "color: red;" })
+            </h5>
+        </div>
+        <h4 style="text-align:center;padding-top:20px;">@ViewBag.ThongBao</h4>
+    }
+</div>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="QuanLyBanSachEntities-Web.config Connection String" description="QuanLyBanSachEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.QuanLyBanSachModel.csdl|res://*/Models.QuanLyBanSachModel.ssdl|res://*/Models.QuanLyBanSachModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=BFSTREET;initial catalog=QuanLyBanSach;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Đồ\ án\\Do_An\\Do_An\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='QuanLyBanSachEntities']/@connectionString" />
+  </parameter>
+</parameters>

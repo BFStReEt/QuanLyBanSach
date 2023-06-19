@@ -1,0 +1,129 @@
+﻿    .icDienThoai{
+    padding-left:30px;
+    float:left;
+}
+.flash {
+    padding: 30px;
+    padding-bottom: 50px;
+}
+
+
+.DangKyDangNhap{
+    float:right;
+}
+
+.DangKyDangNhap a:hover{
+    text-decoration:none;
+    color:coral;
+}
+.navMenu a:hover{
+    text-decoration:none;
+    transition:all .2s ease-out;
+}
+.navMenu{
+    float:right;
+    margin-top:-30px;
+}
+#divDanhMuc {
+    height: 50px;
+    background: #edeae9;    
+}
+
+.navMenu li {
+    display: inline;
+    border-right: solid 1px,rgba(0,0,0,.5);
+    padding: 20px;
+    padding-top:21px;
+    padding-bottom:22px;
+        -webkit-transition:all .5s ease-out;
+        -moz-transition:all .5s ease-out;
+}
+
+#toantrang {
+    position: relative;
+    font-family: "Segoe UI";
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+/*css div Tim kiem*/
+#txtTimKiem{
+    height:40px;
+    float:left;
+    color:black;
+    margin-left:5px;
+    width:300px;
+    
+}
+
+/*Hinh anh tim kiem*/
+#divHinhAnhTimKiem button {
+    padding: 0 10px 0 10px;
+    margin-right: -90px;
+    margin-left: 15px;
+    width: 40px;  
+    background-color:#ba2020;
+}
+
+#divHinhAnhTimKiem button:hover{
+    background-color:rgba(0,0,0,.5);
+}
+
+#divHinhAnhTimKiem img {
+    padding-top: 10px;
+    width: 40px;
+    height: 30px;
+}
+#divHinhAnhTimKiem{
+    width:300px;
+    margin-right:-200px; 
+}
+
+/*Css cho slider nivo*/
+#slider {
+    float: right;
+    width: 1000px;
+}
+
+#divMenuLeft {
+    float: left;
+    border-radius: 4px;
+}
+
+#divLeft{
+    float:left;
+    width:30%;
+}
+
+#divLeft .item{
+    width:100%;
+}
+
+#divRight{
+    width:70%;
+    float:right;
+}
+
+#footer {
+    
+    padding: 20px;
+    text-align: center;
+}
+
+.contact-info {
+    margin-bottom: 20px;
+}
+
+    .contact-info h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .contact-info p {
+        margin: 5px 0;
+    }
+
+.copy-right p {
+    font-size: 14px;
+}
+

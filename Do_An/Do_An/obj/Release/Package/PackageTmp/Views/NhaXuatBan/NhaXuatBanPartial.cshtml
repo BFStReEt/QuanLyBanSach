@@ -1,0 +1,14 @@
+﻿@using Do_An.Models
+@model List<NhaXuatBan>
+
+
+<h1 style="width:167px; padding:10px;">Nhà xuất bản</h1>
+
+@{
+    foreach (var item in Model)
+    {
+        <div><i class="fa-solid fa-book" style="padding-right:10px;"></i><a href="@Url.Action("SachTheoNXB",new { @MaNXB = item.MaNXB})">@item.TenNXB</a></div>
+    }
+
+    <div><i class="fa-solid fa-book" style="padding-right:10px;"></i><a href="@Url.Action("DanhMucNXB")">Nhà xuất bản khác</a></div>
+}

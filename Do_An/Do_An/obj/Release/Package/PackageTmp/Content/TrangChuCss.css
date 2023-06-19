@@ -1,0 +1,41 @@
+﻿#SanPham {
+    width: 25%; /* Chia tỷ lệ 1/3 cho mỗi cuốn sách */
+    float: left; /* Cho phần tử dòng cuốn sách chạy từ trái sang phải */
+    box-sizing: border-box; /* Đảm bảo các phần tử sách không vượt quá chiều rộng đã định */
+    padding: 10px; /* Khoảng cách giữa các cuốn sách */
+}
+.clearfix {
+    clear: both; /* Đảm bảo các hàng không chồng lên nhau */
+}
+    #SanPham img {
+        width: 260px;
+        height: 400px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+#ThongTin {
+    border: 1px solid rgba(0,0,0,.2);
+    padding: 0 15px 15px 15px;
+    font-family: "Segoe UI";
+    font-size: 18pt;
+    font-weight: 400;
+    background:white;
+    width:260px;
+    border-radius:4px;
+}
+
+#TenSach {
+    padding: 5px;
+    height: 60px;
+}
+
+#DonGia {
+    padding: 5px;
+    font-size: 13pt;
+    border-top: 1px solid rgba(0,0,0,.2);
+}
+
+#divBody {
+    margin-left: 100px;
+}

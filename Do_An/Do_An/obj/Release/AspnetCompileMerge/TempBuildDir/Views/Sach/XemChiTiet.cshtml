@@ -1,0 +1,78 @@
+﻿@using Do_An.Models;
+@model Sach
+<link href="~/Content/font awesome/fontawesome.css" rel="stylesheet" />
+<link href="~/Content/font awesome/fontawesome.min.css" rel="stylesheet" />
+<script src="https://kit.fontawesome.com/aa1192215e.js" crossorigin="anonymous"></script>
+
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<style>
+    #divNoiDungBenPhai {
+        display: none;
+    }
+
+    #divMenuSlider {
+        display: none;
+    }
+</style>
+
+@*Thông tin chi tiết sách*@
+<div>
+    <img src="@Url.Content("~/HinhAnhSP/" + Model.AnhBia)" style="max-width: 400px; max-height: 600px; padding-left:20px;" />
+</div>
+
+<div id="ThongTin">
+    <div style="padding-left:20px;">Tên sách: @Model.TenSach</div>
+    <div style="padding-left:20px;">Chủ đề: @ViewBag.TenChuDe</div>
+    <div style="padding-left:20px;">Nhà xuất bản: @ViewBag.NhaXuatBan</div>
+    <div style="padding-left:20px;">Nội dung tóm tắt: @Model.MoTa</div>
+    <div id="DonGia" style="padding-left:20px; color:orange"><font color="green">Giá: </font>@string.Format("{0:0,0}", Model.GiaBan + " VNĐ")</div>
+    <br />
+
+    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = Model.MaSach, @strURL = Request.Url.ToString() }, FormMethod.Post, new { id = "GioHangForm" }))
+    {
+        <button type="button" id="btnGioHang" class="btn btn-primary rounded-button">
+            <i class="fas fa-shopping-cart"></i> Mua hàng
+        </button>
+    }
+
+    <style>
+        .rounded-button {
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            background: darkorange;
+        }
+
+        #btnGioHang i {
+            margin-right: 5px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('#btnGioHang').click(function () {
+                $.ajax({
+                    url: $('#GioHangForm').attr('action'), // URL đích của yêu cầu Ajax
+                    type: $('#GioHangForm').attr('method'), // Phương thức của yêu cầu Ajax
+                    data: $('#GioHangForm').serialize(), // Dữ liệu được gửi đi (nếu có)
+
+                    success: function (result) {
+                        // Xử lý kết quả trả về từ yêu cầu Ajax (nếu cần)
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi (nếu có)
+                    }
+                });
+            });
+        });
+    </script>
+
+</div>
+<div style="clear:both"></div>

@@ -1,0 +1,123 @@
+﻿@using Do_An.Models
+@model List<GioHang>
+<link href="~/Content/NguoiDungCssLayout/DangNhapCss.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Sửa giỏ hàng";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<h2 style="background:white;">
+    <i class="fa fa-shopping-cart"></i>
+    Giỏ hàng
+</h2>
+
+<table class="cart-table">
+    <tr>
+        <th>Mã sách</th>
+        <th>Tên sách</th>
+        <th>Ảnh bìa</th>
+        <th>Đơn giá</th>
+        <th>Số lượng</th>
+        <th>Tổng tiền</th>
+        <th>Thao tác</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.iMaSach</td>
+            <td>@item.sTenSach</td>
+            <td><img src="@Url.Content("~/HinhAnhSP/" + item.sAnhBia)" width="50" height="50" /></td>
+            <td>@string.Format("{0:0,0}", item.dDonGia) VND</td>
+
+            @* Chỉnh sửa giỏ hàng gọi về action CapNhapGioHang *@
+            @using (Html.BeginForm("CapNhapGioHang", "GioHang", new { @iMaSP = item.iMaSach }))
+            {
+                <td>@Html.TextBox("txtSoLuong", @item.iSoLuong)</td>
+                <td>@string.Format("{0:0,0}", item.ThanhTien) VND</td>
+                <td class="action-column">
+                    <button type="submit" class="update-button" title="Cập nhật">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <br />
+                    @* Xóa giỏ hàng gọi về action xóa giỏ hàng *@
+                    @Html.ActionLink("Xóa", "XoaGioHang", new { @iMaSP = item.iMaSach }, new { @class = "delete-link", @title = "Xóa" })
+                </td>
+            }
+        </tr>
+    }
+</table>
+
+
+
+
+<style>
+    table.cart-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        table.cart-table th, table.cart-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table.cart-table th {
+            background-color: #f5f5f5;
+        }
+
+        table.cart-table img {
+            max-width: 50px;
+            max-height: 50px;
+        }
+
+        table.cart-table td.action-column {
+            text-align: center;
+        }
+
+    button.update-button, a.delete-link {
+        display: inline-block;
+        padding: 5px;
+        margin-right: 5px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        font-size: 12px;
+        line-height: 1;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        button.update-button:hover, a.delete-link:hover {
+            background-color: #0056b3;
+        }
+
+        button.update-button i, a.delete-link i {
+            font-size: 16px;
+        }
+
+        button.update-button[title], a.delete-link[title] {
+            position: relative;
+        }
+
+            button.update-button[title]::after, a.delete-link[title]::after {
+                content: attr(title);
+                position: absolute;
+                top: -25px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 5px;
+                background-color: #333;
+                color: #fff;
+                font-size: 12px;
+                line-height: 1;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            button.update-button[title]:hover::after, a.delete-link[title]:hover::after {
+                opacity: 1;
+            }
+
+</style>

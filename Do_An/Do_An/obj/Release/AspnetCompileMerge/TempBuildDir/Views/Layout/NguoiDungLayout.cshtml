@@ -1,0 +1,199 @@
+﻿ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <title>@ViewBag.Title</title>
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://kit.fontawesome.com/aa1192215e.js" crossorigin="anonymous"></script>
+     <link href="~/Content/NguoiDungCssLayout/screen.css" rel="stylesheet" />
+     <link href="~/Content/NguoiDungCssLayout/NguoiDungCss.css" rel="stylesheet" />
+     <link href="~/Content/font awesome/fontawesome.css" rel="stylesheet" />
+     <link href="~/Content/font awesome/fontawesome.min.css" rel="stylesheet" />
+
+     @*Chèn link nivoSlider*@
+     <link href="~/NivoSlider/nivo-slider.css" rel="stylesheet" />
+     <script src="~/NivoSlider/jquery-1.7.1.min.js"></script>
+     <script src="~/NivoSlider/jquery.nivo.slider.js"></script>
+     <script src="~/NivoSlider/jquery.nivo.slider.pack.js"></script>
+
+ </head>
+
+ <body>
+     <div id="toantrang">
+         <section class="blank">
+             <div class="flash">
+                 <div class="icDienThoai">
+                     <i class="fa-solid fa-phone-volume">  (08) 4997 8416</i>
+                 </div>
+                 @using Do_An.Models
+                 @*Tạo div đăng ký đăng nhập*@
+                 @{
+                     KhachHang khachHang = Session["TaiKhoan"] as KhachHang;
+                     if (khachHang != null)
+                     {
+                         <div class="DangKyDangNhap">
+                             @Html.Action("GioHangPartial", "GioHang")
+                             <span>Chào, @khachHang.HoTen </span>
+                             <i class="fa-solid fa-user"></i>
+                             @Html.ActionLink("Đăng xuất", "DangXuat", "NguoiDung", null, htmlAttributes: new { @class = "DangXuat" })
+                             <i class="fa-solid fa-share-from-square"></i>
+                         </div>
+                     }
+                     else
+                     {
+                         <div class="DangKyDangNhap">
+                             @Html.Action("GioHangPartial", "GioHang")
+                             @Html.ActionLink("Đăng ký", "DangKy", "NguoiDung", null, htmlAttributes: new { @class = "DangKy" })
+                             <i class="fa-solid fa-lock fa-bounce"></i>
+                             @Html.ActionLink("Đăng nhập", "DangNhap", "NguoiDung", null, htmlAttributes: new { @class = "DangNhap" })
+                             <i class="fa-solid fa-user"></i>
+                         </div>
+                     }
+                 }
+             </div>
+
+             <div class="flash_success" id="divDanhMuc">
+                 @*Hộp thoại tìm kiếm*@
+                 <div id="txtTimKiem">
+                     @using (Html.BeginForm("KetQuaTimKiem", "TimKiem", FormMethod.Post))
+                     {
+                         @Html.TextBox("txtTimKiem", "", htmlAttributes: new { @class = "TextBoxTimKiem", @placeholder = "Nhập vào sách cần tìm kiếm" })
+                     }
+                 </div>
+
+                 <div id="divHinhAnhTimKiem">
+                     <button type="submit"><img src="~/HinhAnh/freesearch.png" /></button>
+                 </div>
+
+                 <ul class="navMenu">
+                     <li>
+                         <a href="/">Trang chủ</a>
+                     </li>
+
+                     <li>
+                         <a href="#">Giới thiệu</a>
+                     </li>
+
+                     <li>
+                         <a href="#" onclick="ScrollToFooter()">Liên hệ</a>
+                     </li>
+
+                     <li>
+                         <a href="#">Hướng dẫn</a>
+                     </li>
+
+                     <li>
+                         <a href="#">Sách</a>
+                     </li>
+                 </ul>
+             </div>
+
+         </section>
+         @*Div body*@
+         <section class="hidden-section">
+             @*Div menu ben trai*@
+             <div id="divMenuLeft">
+                 @*Chèn vào partial view sách mới*@
+                 <div class="activity">
+                     @Html.Action("SachMoiPartial", "Sach")
+                 </div>
+             </div>
+
+             <div id="slider" class="nivoSlider">
+                 <img src="~/HinhAnh/Image/6809927.jpg" />
+                 <img src="~/HinhAnh/Image/8644645.jpg" />
+                 <img src="~/HinhAnh/Image/6756143.jpg" />
+                 <img src="~/HinhAnh/Image/banner1.jpg" />
+             </div>
+
+             <div style="clear:both"></div>
+         </section>
+
+         @*Phần chủ đề*@
+         <section class="hidden-section" style="
+            justify-content: center;
+            align-items: center;">
+
+             <div>
+                 @Html.Action("ChuDePartial", "ChuDe")
+             </div>
+
+         </section>
+
+         <div style="clear:both"></div>
+
+
+         <div id="NoiDung">
+             @RenderBody()
+         </div>
+
+
+         @*Div Nhà Xuất Bản*@
+         <section class="blank items">
+             <div id="divLeft">
+                 <div class="item">
+                     <div class="item-info">
+                         @*Action PartialView*@
+                         @Html.Action("NhaXuatBanPartial", "NhaXuatBan")
+                     </div>
+                     <img src="~/HinhAnh/Image/banner1.jpg" />
+                 </div>
+             </div>
+
+             <div id="divRight">
+                 @RenderSection("NoiDungBenPhai", false)
+
+             </div>
+
+         </section>
+         <div style="
+             background: white;">
+             <a href="#" class="button button-buy">Chào mừng các bạn đến với tiệm sách của Urine(2023)</a>
+         </div>
+     </div>
+
+
+     <footer id="footer" style="
+        background: white;
+        width: 2000px;margin-bottom:-80px;">
+
+         <div class="contact-info">
+             <h3>Thông tin liên hệ</h3>
+             <p>Địa chỉ: 123 Đường ABC, Thành phố Hồ Chí Minh</p>
+             <p>Email: toidxbp02@example.com</p>
+             <p>Số điện thoại: 0123456789</p>
+         </div>
+         <div class="copy-right">
+             <p>&copy; 2023 Tiệm sách của Urine. Bảo lưu mọi quyền.</p>
+         </div>
+     </footer>
+
+     @*Script chạy nivo Slider*@
+     <script type="text/javascript">
+         $(window).load(function () {
+             $('#slider').nivoSlider({
+                 controlNav: false,
+                 nextText: '',
+                 prevText: '',
+             });
+         });
+     </script>
+
+     @section Scripts {
+         <script>
+             function ScrollToFooter() {
+                 var footer = document.getElementById('footer');
+                 footer.scrollIntoView({ behavior: 'smooth' });
+             }
+         </script>
+     }
+
+     
+
+
+ </body>
+</html>
+
+
